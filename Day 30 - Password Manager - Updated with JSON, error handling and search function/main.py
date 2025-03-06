@@ -4,6 +4,39 @@ from random import choice,randint,shuffle
 import pyperclip
 import json
 
+# ---------------------------- CUSTOM MESSAGEBOX ------------------------------- #
+
+#custom messagebox as the ones provided do not dynamically adjust
+
+def custom_messagebox(message, name):
+    msg_window = Toplevel()
+    msg_window.title(f"Password for {name}")
+
+    label = Label(msg_window, text=message, padx=20, pady=20)
+    label.pack()
+
+    button_frame = Frame(msg_window)
+    button_frame.pack(pady=10)
+
+    def on_ok():
+        msg_window.destroy()
+        return True
+
+    def on_cancel():
+        msg_window.destroy()
+        return False
+
+    ok_button = Button(button_frame,text= "OK", command=on_ok, width=5)
+    ok_button.pack(side="left", padx=20, pady=10)
+
+    cancel_button = Button(button_frame,text="Cancel", command=on_cancel, width= 8)
+    cancel_button.pack(side="left", padx=20, pady=10)
+
+    width = max(300, len(message) *4)
+    msg_window.geometry(f"{width}x250")
+
+
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -70,8 +103,8 @@ def find_password():
     else:
             site_name = website_entry.get()
             if site_name in data:
-                print(data[site_name])
-                copy = messagebox.askokcancel(title=f"Password for {site_name}", message=f"Password: {data[site_name]['password']}\nWould you like to copy to the clipboard?")
+                #copy = messagebox.askokcancel(title=f"Password for {site_name}", message=f"Email: {data[site_name]['email']}\nPassword: {data[site_name]['password']}\nWould you like to copy to the clipboard?")
+                copy = custom_messagebox(message=f"Website:  {site_name}\n\nEmail:  {data[site_name]['email']}\n\nPassword:  {data[site_name]['password']}\n\nWould you like to copy to the clipboard?",name=site_name)
                 if copy:
                     pyperclip.copy(data[site_name]["password"])
             else:
@@ -115,7 +148,7 @@ password_button.grid(row=3,column=2,sticky = "EW")
 add_button = Button(text="Add", width=35, bg="white", highlightthickness=1, command=save)
 add_button.grid(row=4, column=1, columnspan=2,sticky = "EW")
 
-search_button = Button(text = "Search", width = 21, bg="white",highlightthickness=1,command = find_password)
+search_button = Button(text = "Search", width = 14, bg="white",highlightthickness=1,command = find_password)
 search_button.grid(row=1,column=2, sticky = "EW")
 
 
