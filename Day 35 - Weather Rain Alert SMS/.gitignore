@@ -1,5 +1,0 @@
-.env
-*.env
-*copy*.py
-*comment*.py
-__pycache__/
