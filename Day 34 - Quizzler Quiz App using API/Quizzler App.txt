@@ -1,0 +1,50 @@
+Quizzler App
+
+Overview
+
+This is a Python-based quiz application that uses the Open Trivia Database API to fetch random True/False questions. The app is built with Tkinter to provide a simple graphical interface where users can answer questions, track their score, and receive instant visual feedback.
+ 
+
+Features
+
+Fetches random True/False questions from the Open Trivia Database.
+Interactive Tkinter GUI with buttons for answering questions.
+Score tracking displayed in real time.
+Visual feedback: green background for correct answers, red for incorrect.
+Automatically progresses to the next question with a short delay.
+Disables inputs when all questions have been answered.
+
+
+
+How it Works (Code Overview)
+
+Question → Class that stores question text and its correct answer.
+data.py → Fetches trivia questions from the Open Trivia Database API.
+QuizBrain → Controls question flow, checks answers, and keeps score.
+QuizInterface → Tkinter-based UI that displays questions, buttons, and score, and provides feedback.
+main.py → Entry point that builds the question bank, initializes the quiz, and launches the interface.
+
+
+
+Requirements
+
+Python 3.x
+Tkinter (included in standard Python library)
+requests library (pip install requests)
+images/true.png and images/false.png files (for the True/False buttons).
+
+
+Setup & Execution
+
+Ensure you have Python installed.
+Install the required library: pip install requests
+Save all the provided .py files in the same directory.
+Create an images/ folder in the same directory and add true.png and false.png images.
+Run the app with: python main.py
+
+
+Notes
+
+An internet connection is required to fetch quiz questions from the API.
+The app disables the True/False buttons once all questions are completed.
+Question text is automatically cleaned of HTML character codes (e.g., &quot; → ").
