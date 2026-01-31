@@ -30,4 +30,4 @@ jobs:
           FROM_NUMBER: ${{ secrets.FROM_NUMBER }}
           TO_NUMBER: ${{ secrets.TO_NUMBER }}
           OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
-        run: python Day 35 - Weather Rain Alert SMS/main.py
+        run: python "Day 35 - Weather Rain Alert SMS/main.py"
