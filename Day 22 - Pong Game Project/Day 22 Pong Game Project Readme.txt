@@ -5,6 +5,7 @@ This is a Pong game built using Python's Turtle graphics library. The player con
 
 How to Run:
 Run the script:python main.py
+
 Control the paddles:
 Right Paddle: Use the Up and Down arrow keys.
 Left Paddle: Use the 'w' (up) and 's' (down) keys.
