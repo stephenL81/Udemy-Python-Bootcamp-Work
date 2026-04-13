@@ -34,8 +34,10 @@ How to Run:
      * TWILIO_TO_NUMBER (your personal phone number, format: +44xxxxxxxxxx)
 
 5. First run - populate IATA codes:
-   Uncomment the line in main.py:
-   # data_manager.set_missing_iatas()
+   Uncomment this line in main.py:
+   
+   `# data_manager.set_missing_iatas()`
+   
    Run once, then comment it out again.
 
 6. Run the app:
@@ -92,9 +94,9 @@ The original project specified using the Amadeus Flight API, which discontinued 
 Solution: Migrated to the Duffel Flight API, which offers a more generous free tier (800 requests/day vs Amadeus's 25/day limit for those with access). However, Duffel does not offer an inspiration search endpoint and requires specific departure and return dates for each request.
 
 Challenge 2 - Search Methodology Redesign:
-The original specification called for searching flights up to 6 months in advance across all possible destinations and date combinations. With Duffel requiring individual requests for each date combination, this approach would have required hundreds of API calls per search (180 days × 3 destinations = 540+ requests), quickly exhausting the free tier and making the app impractical for regular use.
+The original specification called for searching flights up to 6 months in advance. However, Duffel's API architecture introduced a critical constraint: unlike Amadeus's "Inspiration Search" endpoint that could search flexible date ranges, Duffel requires individual API requests for each specific date combination (departure date + return date). Searching 6 months in advance would have required 540+ requests per search (180 days × 3 destinations), quickly exhausting the free tier and making the application impractical for regular use.
 
-Solution: Reframed the project as a "Last-Minute Flight Deals" finder focusing on the next 2 weeks rather than 6 months. This is actually a more realistic use case - travelers booking spontaneous trips typically look 1-2 weeks ahead rather than months in advance. The reduced timeframe (14 days × 3 destinations = 42 requests) makes the app sustainable within free tier limits while still providing genuine value.
+Solution: To work within these API limitations while maintaining a functional product, I reframed the project as a "Last-Minute Flight Deals" finder with a 7-day search window. This reduced the request count to a sustainable 21 requests per search (7 days × 3 destinations) while still delivering genuine value. This adaptation demonstrates the ability to adjust project scope pragmatically when faced with real-world technical constraints.
 
 Challenge 3 - Date Range Implementation:
 Without a native date range search feature in Duffel, the app needed to programmatically generate and test multiple date combinations.
